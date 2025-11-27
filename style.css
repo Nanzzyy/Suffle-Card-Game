@@ -1,0 +1,183 @@
+:root {
+    --bg-color: #f0f2f5;
+    --primary-color: #007bff;
+    --primary-hover: #0056b3;
+    --card-bg: #ffffff;
+    --card-back-bg: linear-gradient(135deg, #6a82fb, #fc5c7d);
+    --text-color: #333;
+    --shadow: 0 4px 15px rgba(0,0,0,0.1);
+    --border-radius: 12px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-color);
+    text-align: center;
+    padding: 20px;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none; /* fallback */
+}
+
+/* older rules set `#main-menu { display: flex; }` which is more specific than
+   .hidden. Add ID-specific selectors to ensure `hidden` actually hides those
+   container elements (fixes the bug where both menus showed at once). */
+#main-menu.hidden, #game-container.hidden {
+    display: none;
+}
+
+#main-menu, #game-container {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    width: 90%;
+    max-width: 500px;
+}
+
+#main-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.level-selection h2 {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.level-selection .levels {
+    display: flex;
+    gap: 15px;
+}
+
+.level-selection label {
+    font-size: 16px;
+    background: var(--bg-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.level-selection input[type="radio"] {
+    display: none;
+}
+
+.level-selection input[type="radio"]:checked + label {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-hover);
+}
+
+.stats {
+    font-size: 16px;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 30px;
+    background: #e9ecef;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.stats div {
+    font-weight: 600;
+}
+
+.stats span {
+    font-weight: 400;
+    background: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.board {
+    margin: auto;
+    display: grid;
+    gap: 12px;
+}
+
+.card {
+    width: 80px;
+    height: 80px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.3, 1.3, 0.3, 1);
+    transform-style: preserve-3d;
+}
+
+.card.flip .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    font-size: 40px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.card-front {
+    background: var(--card-bg);
+    border: 2px solid #eee;
+}
+
+.card-back {
+    background: var(--card-back-bg);
+    transform: rotateY(180deg);
+    color: white;
+    font-size: 35px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+button:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+#game-container .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
