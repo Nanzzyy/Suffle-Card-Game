@@ -10,6 +10,13 @@ const playBtn = document.getElementById("playBtn");
 const resetBtn = document.getElementById("resetBtn");
 const backToMenuBtn = document.getElementById("backToMenuBtn");
 
+// --- Audio Elements ---
+const cardFlipSound = document.getElementById("cardFlipSound");
+const matchSuccessSound = document.getElementById("matchSuccessSound");
+const matchFailSound = document.getElementById("matchFailSound");
+const gameOverSound = document.getElementById("gameOverSound");
+const gameWinSound = document.getElementById("gameWinSound");
+
 // --- Emoji Pairs ---
 const allEmojiPairs = [
     ["☔", "🌧️"],   // hujan
@@ -30,7 +37,7 @@ let secondCard = null;
 let lockBoard = false;
 let moves = 0;
 let matches = 0;
-let lives = 5;
+let lives = 10; // Changed from 5 to 10
 let wins = 0;
 
 // --- Level Configuration ---
@@ -68,7 +75,7 @@ function startGame() {
     boardElement.innerHTML = "";
     moves = 0;
     matches = 0;
-    lives = 5;
+    lives = 10; // Changed from 5 to 10
     lockBoard = false;
     firstCard = null;
     secondCard = null;
@@ -143,6 +150,8 @@ function flipCard(cardData, cardElement) {
         return;
     }
 
+    cardFlipSound.play(); // Play card flip sound
+
     cardElement.classList.add("flip");
 
     if (!firstCard) {
@@ -166,11 +175,13 @@ function checkForMatch() {
 function handleMatch() {
     matches++;
     matchesElement.textContent = matches;
+    matchSuccessSound.play(); // Play match success sound
     resetFlipState();
 
     if (matches === levelConfig[currentLevel].pairs) {
         wins++;
         winsElement.textContent = wins;
+        gameWinSound.play(); // Play game win sound
         setTimeout(() => {
             alert("🎉 You Win!");
             if (wins >= 3) {
@@ -188,8 +199,10 @@ function handleMatch() {
 function handleMismatch() {
     lives--;
     livesElement.textContent = lives;
+    matchFailSound.play(); // Play match fail sound
 
     if (lives <= 0) {
+        gameOverSound.play(); // Play game over sound
         setTimeout(() => {
             alert("😭 Game Over! You ran out of lives.");
             showScreen("menu");

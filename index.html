@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="main-menu">
-        <h1>🧠 Emoji Mix Memory Game</h1>
+        <h1>Shuffle Card Game </h1>
         <div class="level-selection">
             <h2>Choose a Level:</h2>
             <div class="levels">
@@ -34,7 +34,7 @@
         <div class="stats">
             <div>Moves: <span id="moves">0</span></div>
             <div>Matches: <span id="matches">0</span></div>
-            <div>Lives: <span id="lives">5</span></div>
+            <div>Lives: <span id="lives">10</span></div>
             <div>Wins: <span id="wins">0</span></div>
         </div>
 
@@ -45,6 +45,13 @@
             <button id="backToMenuBtn">Back to Menu</button>
         </div>
     </div>
+
+    <!-- Audio Elements -->
+    <audio id="cardFlipSound" src="./sfx/card_flip.mp3" preload="auto"></audio>
+    <audio id="matchSuccessSound" src="./sfx/match_success.mp3" preload="auto"></audio>
+    <audio id="matchFailSound" src="./sfx/match_fail.mp3" preload="auto"></audio>
+    <audio id="gameOverSound" src="./sfx/game_over.mp3" preload="auto"></audio>
+    <audio id="gameWinSound" src="./sfx/game_win.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>
