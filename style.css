@@ -1,7 +1,7 @@
 :root {
-    --bg-color: #f0f2f5;
-    --primary-color: #007bff;
-    --primary-hover: #0056b3;
+    --bg-color: #F1F3E0;
+    --primary-color: #A1BC98;
+    --primary-hover: #778873;
     --card-bg: #ffffff;
     --card-back-bg: linear-gradient(135deg, #6a82fb, #fc5c7d);
     --text-color: #333;
@@ -28,12 +28,9 @@ h1 {
 }
 
 .hidden {
-    display: none; /* fallback */
+    display: none;
 }
 
-/* older rules set `#main-menu { display: flex; }` which is more specific than
-   .hidden. Add ID-specific selectors to ensure `hidden` actually hides those
-   container elements (fixes the bug where both menus showed at once). */
 #main-menu.hidden, #game-container.hidden {
     display: none;
 }
@@ -51,7 +48,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 25px;
 }
 
 .level-selection h2 {
@@ -117,6 +114,12 @@ h1 {
     height: 80px;
     perspective: 1000px;
     cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.card.matched {
+    transform: scale(0);
+    visibility: hidden;
 }
 
 .card-inner {

@@ -16,6 +16,7 @@ const matchSuccessSound = document.getElementById("matchSuccessSound");
 const matchFailSound = document.getElementById("matchFailSound");
 const gameOverSound = document.getElementById("gameOverSound");
 const gameWinSound = document.getElementById("gameWinSound");
+const buttonClickSound = document.getElementById("buttonClickSound");
 
 // --- Emoji Pairs ---
 const allEmojiPairs = [
@@ -37,26 +38,34 @@ let secondCard = null;
 let lockBoard = false;
 let moves = 0;
 let matches = 0;
-let lives = 10; // Changed from 5 to 10
+let lives = 10;
 let wins = 0;
 
 // --- Level Configuration ---
 const levelConfig = {
-    easy: { pairs: 4, columns: 4 },
-    medium: { pairs: 6, columns: 4 },
-    hard: { pairs: 8, columns: 4 }
+    easy: { pairs: 4, columns: 4, lives: 10 },
+    medium: { pairs: 6, columns: 4, lives: 7 },
+    hard: { pairs: 8, columns: 4, lives: 5 }
 };
 
 // --- Event Listeners ---
 playBtn.addEventListener("click", () => {
+    buttonClickSound.play();
     const selectedLevel = document.querySelector('input[name="level"]:checked').value;
     currentLevel = selectedLevel;
     showScreen("game");
     startGame();
 });
 
-resetBtn.addEventListener("click", startGame);
-backToMenuBtn.addEventListener("click", () => showScreen("menu"));
+resetBtn.addEventListener("click", () => {
+    buttonClickSound.play();
+    startGame();
+});
+
+backToMenuBtn.addEventListener("click", () => {
+    buttonClickSound.play();
+    showScreen("menu");
+});
 
 // --- Screen Management ---
 function showScreen(screen) {
@@ -75,7 +84,8 @@ function startGame() {
     boardElement.innerHTML = "";
     moves = 0;
     matches = 0;
-    lives = 10; // Changed from 5 to 10
+    const config = levelConfig[currentLevel];
+    lives = config.lives;
     lockBoard = false;
     firstCard = null;
     secondCard = null;
@@ -86,7 +96,6 @@ function startGame() {
     livesElement.textContent = lives;
 
     // Create and shuffle the deck based on the level
-    const config = levelConfig[currentLevel];
     deck = createDeck(config.pairs);
     deck = shuffle(deck);
 
@@ -176,6 +185,11 @@ function handleMatch() {
     matches++;
     matchesElement.textContent = matches;
     matchSuccessSound.play(); // Play match success sound
+
+    // Add 'matched' class to the cards to make them disappear
+    firstCard.cardElement.classList.add("matched");
+    secondCard.cardElement.classList.add("matched");
+
     resetFlipState();
 
     if (matches === levelConfig[currentLevel].pairs) {
