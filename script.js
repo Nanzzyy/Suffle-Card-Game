@@ -150,18 +150,22 @@ function createCardElement(cardData, index) {
     inner.appendChild(back);
     card.appendChild(inner);
 
+    // Cards start face down (showing '?')
+    card.classList.add("flip"); // Add 'flip' class initially
+
     card.addEventListener("click", () => flipCard(cardData, card));
     return card;
 }
 
 function flipCard(cardData, cardElement) {
-    if (lockBoard || cardElement.classList.contains("flip") || firstCard === cardElement) {
+    // If board is locked, or card is already showing emoji, or it's the same card as firstCard, do nothing
+    if (lockBoard || !cardElement.classList.contains("flip") || firstCard === cardElement) {
         return;
     }
 
     cardFlipSound.play(); // Play card flip sound
 
-    cardElement.classList.add("flip");
+    cardElement.classList.remove("flip"); // Remove 'flip' class to show emoji
 
     if (!firstCard) {
         firstCard = { cardData, cardElement };
@@ -225,8 +229,8 @@ function handleMismatch() {
     }
 
     setTimeout(() => {
-        firstCard.cardElement.classList.remove("flip");
-        secondCard.cardElement.classList.remove("flip");
+        firstCard.cardElement.classList.add("flip"); // Add 'flip' class to hide emoji again
+        secondCard.cardElement.classList.add("flip"); // Add 'flip' class to hide emoji again
         resetFlipState();
     }, 800);
 }
