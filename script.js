@@ -7,7 +7,7 @@ const matchesElement = document.getElementById("matches");
 const livesElement = document.getElementById("lives");
 const winsElement = document.getElementById("wins");
 const playBtn = document.getElementById("playBtn");
-const resetBtn = document.getElementById("resetBtn");
+const resetBtn = document.getElementById("resetBtn"); 
 const backToMenuBtn = document.getElementById("backToMenuBtn");
 
 // --- Audio Elements ---
