@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="user-info" class="hidden">
+        <span id="welcome-message"></span>
+        <button id="logoutBtn">Logout</button>
+    </div>
+
     <div id="main-menu">
         <h1>Shuffle Card Game </h1>
         <div class="level-selection">
@@ -25,7 +30,10 @@
                 <label for="hard">Hard</label>
             </div>
         </div>
-        <button id="playBtn">Play Game</button>
+        <div class="menu-buttons">
+            <button id="playBtn">Play Game</button>
+            <a href="leaderboard.html" class="button-link">Leaderboard</a>
+        </div>
     </div>
 
     <div id="game-container" class="hidden">
@@ -33,6 +41,7 @@
 
         <div class="stats">
             <div>Moves: <span id="moves">0</span></div>
+            <div>Time: <span id="timer">0</span>s</div>
             <div>Matches: <span id="matches">0</span></div>
             <div>Lives: <span id="lives">10</span></div>
             <div>Wins: <span id="wins">0</span></div>
@@ -47,12 +56,12 @@
     </div>
 
     <!-- Audio Elements -->
-    <audio id="cardFlipSound" src="./sfx/card_flip.mp3" preload="auto"></audio>
-    <audio id="matchSuccessSound" src="./sfx/match_success.mp3" preload="auto"></audio>
-    <audio id="matchFailSound" src="./sfx/match_fail.mp3" preload="auto"></audio>
-    <audio id="gameOverSound" src="./sfx/game_over.mp3" preload="auto"></audio>
-    <audio id="gameWinSound" src="./sfx/game_win.mp3" preload="auto"></audio>
-    <audio id="buttonClickSound" src="./sfx/button_click.mp3" preload="auto"></audio>
+    <audio id="cardFlipSound" src="./sfx/cardFlipSound.mp3" preload="auto"></audio>
+    <audio id="matchSuccessSound" src="./sfx/matchSuccessSound.mp3" preload="auto"></audio>
+    <audio id="matchFailSound" src="./sfx/matchFailSound.mp3" preload="auto"></audio>
+    <audio id="gameOverSound" src="./sfx/gameOverSound.mp3" preload="auto"></audio>
+    <audio id="gameWinSound" src="./sfx/gameWinSound.mp3" preload="auto"></audio>
+    <audio id="buttonClickSound" src="./sfx/buttonClickSound.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>

@@ -184,3 +184,142 @@ button:hover {
     justify-content: center;
     gap: 15px;
 }
+
+/* --- Login Page Styles --- */
+#login-container {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    width: 90%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#login-container h1 {
+    margin-bottom: 10px;
+}
+
+#login-container p {
+    margin-bottom: 20px;
+    color: #6c757d;
+}
+
+#login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#login-form input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    font-size: 16px;
+    box-sizing: border-box; 
+}
+
+#login-form button {
+    margin-top: 0;
+}
+
+/* --- Leaderboard Page Styles --- */
+#leaderboard-container {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+#leaderboard-list {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#leaderboard-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#leaderboard-list li .username {
+    color: var(--primary-hover);
+}
+
+#leaderboard-list li .score {
+    color: #343a40;
+}
+
+.button-link {
+    text-decoration: none;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.button-link:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+}
+
+/* --- User Info --- */
+#user-info {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+#welcome-message {
+    font-weight: 600;
+}
+
+#logoutBtn {
+    margin: 0;
+    padding: 8px 12px;
+    font-size: 14px;
+    background: #dc3545;
+}
+
+#logoutBtn:hover {
+    background: #c82333;
+}
+
+.menu-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
