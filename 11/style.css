@@ -1,0 +1,733 @@
+:root {
+    --bg-color: #0c0a18;
+    --card-bg: #1a1829;
+    --text-color: #e0e0e0;
+    --border-radius: 12px;
+    --danger-color: #ff3333;
+
+    /* Palet Warna Baru yang Cerah */
+    --primary-color: #00aaff; /* Biru Neon */
+    --gold-color: #ffc400;
+    --gold-hover: #d4a300;
+
+    --vibrant-pink: #ff007f;
+    --vibrant-purple: #ae00ff;
+    --vibrant-cyan: #00e5ff;
+    
+    /* Warna Kesulitan */
+    --easy-color: #00ffaa;
+    --medium-color: #ffaa00;
+    --hard-color: #ff4444;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--bg-color);
+    text-align: center;
+    padding: 20px;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+    transition: background-image 1s ease-in-out; /* Animasi transisi untuk latar belakang */
+}
+
+h1 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Halaman Login Spesifik --- */
+
+#login-container h1 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+#login-container p {
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    color: #a0a0a0;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+
+#login-form input {
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #555;
+    background-color: #2a2839;
+    color: var(--text-color);
+    font-size: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+
+
+#login-form input:focus {
+    outline: none;
+    border-color: var(--vibrant-cyan);
+    box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.3);
+}
+
+
+
+#login-form button {
+    width: 100%; /* Tombol login memenuhi lebar */
+}
+
+
+
+/* --- Container Utama (Login, Menu, Leaderboard) --- */
+#login-container, #main-menu, #leaderboard-container, #game-container, #in-game-leaderboard {
+    background: var(--card-bg);
+    padding: 30px 40px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 25px rgba(0, 170, 255, 0.2);
+    width: 90%;
+    max-width: 550px; /* Disesuaikan agar lebih ramping */
+    animation: fadeIn 0.5s ease-out;
+    margin: 20px;
+    border: 1px solid var(--primary-color);
+}
+
+#login-container h1, #main-menu h1, #leaderboard-container h1, #game-container h1 {
+    color: var(--vibrant-cyan);
+    text-shadow: 0 0 10px var(--vibrant-cyan);
+    font-weight: 700;
+}
+
+/* --- User Info Bar (Lebih Profesional) --- */
+#user-info {
+    position: fixed; /* Ubah ke fixed agar selalu terlihat */
+    top: 25px;
+    right: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--card-bg);
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+#welcome-message {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* Tombol Ikon */
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--text-color);
+    transition: color 0.2s ease;
+    padding: 0;
+    margin: 0;
+}
+
+.icon-button:hover {
+    color: var(--danger-color); /* Hover khusus untuk logout/exit */
+    transform: none; /* Hilangkan transform bawaan button:hover */
+}
+
+/* --- Level Selection --- */
+.level-selection h2 {
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: var(--gold-color);
+    font-size: 1.5em;
+    text-shadow: 0 0 8px var(--gold-hover);
+}
+
+.level-selection .levels {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.level-selection input[type="radio"] {
+    display: none;
+}
+
+.level-selection label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 10px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary-color);
+    background: rgba(0, 170, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.level-selection label .level-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.level-selection label .level-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+#easy + label { border-color: var(--easy-color); }
+#medium + label { border-color: var(--medium-color); }
+#hard + label { border-color: var(--hard-color); }
+
+.level-selection input[type="radio"]:checked + label {
+    transform: scale(1.05);
+    background: rgba(0, 170, 255, 0.2);
+}
+
+#easy:checked + label { box-shadow: 0 0 15px var(--easy-color); }
+#medium:checked + label { box-shadow: 0 0 15px var(--medium-color); }
+#hard:checked + label { box-shadow: 0 0 15px var(--hard-color); }
+
+.level-selection input[type="radio"]:checked + label .level-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* --- Tombol Aksi Umum (Desain Ulang) --- */
+button, .button-link {
+    padding: 12px 25px;
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    
+    background-image: linear-gradient(to right, var(--vibrant-pink), var(--vibrant-purple), var(--primary-color));
+    box-shadow: 0 4px 15px rgba(174, 0, 255, 0.3);
+    background-size: 300% 100%;
+    transition: all .4s ease-in-out;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+button:hover, .button-link:hover {
+    background-position: 100% 0;
+    transform: translateY(-2px);
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.menu-buttons .large-button {
+    width: 100%;
+    padding: 20px;
+    font-size: 22px;
+}
+
+.sub-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.sub-buttons button {
+    width: 50%;
+    font-size: 14px;
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+#game-logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+/* --- Papan Permainan --- */
+#game-board {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.card {
+    width: 90px;
+    height: 90px;
+    perspective: 1000px;
+    background-color: transparent;
+    border: none;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card.flip .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.card-back {
+    background: linear-gradient(45deg, var(--primary-color), var(--vibrant-cyan));
+    color: var(--card-bg);
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.card-front {
+    background-color: #333;
+    transform: rotateY(180deg);
+    padding: 5px;
+}
+
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: calc(var(--border-radius) - 5px);
+}
+
+.card.removed {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+
+
+/* --- Layout Game (Game + Leaderboard Samping) --- */
+#game-layout {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 95%;
+    max-width: 1200px;
+    margin: 40px auto;
+    align-items: flex-start; /* Konten di atas */
+}
+
+#game-container {
+    padding: 30px;
+    flex-grow: 1;
+}
+
+/* Leaderboard Samping Saat Bermain */
+#in-game-leaderboard {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    width: 300px;
+    min-height: 400px;
+    text-align: left;
+    border: 1px solid #444;
+}
+
+#in-game-leaderboard h2 {
+    color: var(--primary-color);
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+
+#in-game-leaderboard ol li {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* --- Stats Bar --- */
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    margin-bottom: 25px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid #444;
+}
+
+.stats div {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    gap: 8px;
+    background: var(--card-bg);
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--primary-color);
+    border: 1px solid #555;
+}
+
+.stats span {
+    font-weight: 700;
+    font-size: 1.1em;
+    color: var(--gold-color);
+}
+
+/* --- Leaderboard Styling (Umum & Popup) --- */
+#leaderboard-list li, #in-game-list li, #popup-leaderboard-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid #444;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+#leaderboard-list li:hover, #in-game-list li:hover, #popup-leaderboard-list li:hover {
+    transform: scale(1.02);
+    border-color: var(--primary-color);
+}
+
+#leaderboard-list li.current-user, #in-game-list li.current-user, #popup-leaderboard-list li.current-user {
+    background: rgba(255, 196, 0, 0.15);
+    border-color: var(--gold-color);
+    box-shadow: 0 0 15px rgba(255, 196, 0, 0.3);
+}
+
+#leaderboard-list li .rank, #in-game-list li .rank, #popup-leaderboard-list li .rank {
+    font-weight: 700;
+    font-size: 1.1em;
+    width: 40px;
+    text-align: center;
+    color: var(--gold-color);
+}
+
+#leaderboard-list li .username, #in-game-list li .username, #popup-leaderboard-list li .username {
+    flex-grow: 1;
+    margin-left: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+#leaderboard-list li .score, #in-game-list li .score, #popup-leaderboard-list li .score {
+    font-weight: 700;
+    font-size: 1.2em;
+    color: var(--vibrant-cyan);
+}
+
+
+/* --- POPUP / Modal Styling --- */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: var(--card-bg);
+    padding: 0;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    width: 90%;
+    max-width: 500px;
+    text-align: left;
+    transform: scale(0.9);
+    animation: bounceIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    border: 1px solid var(--primary-color);
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #444;
+}
+
+.popup-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: var(--gold-color);
+}
+
+.popup-close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.popup-close-btn:hover {
+    color: var(--danger-color);
+}
+
+.popup-body {
+    padding: 25px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.popup-content p {
+    font-size: 1.1em;
+    margin: 0 0 20px 0;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* --- Gaya spesifik untuk konten popup --- */
+.level-selection .levels {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.level-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    font-size: 18px;
+}
+
+.level-btn .level-icon {
+    font-size: 24px;
+}
+
+.level-btn.level-easy {
+    background-image: linear-gradient(to right, #28a745, #218838, #1e7e34);
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.level-btn.level-medium {
+    background-image: linear-gradient(to right, #ffc107, #e0a800, #c69500);
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
+
+.level-btn.level-hard {
+    background-image: linear-gradient(to right, #dc3545, #c82333, #bd2130);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.how-to-play ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.how-to-play li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.how-to-play li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
+#popup-leaderboard-list {
+    list-style: none;
+    padding: 0;
+}
+
+#popup-leaderboard-container h4 {
+    margin: 20px 0 10px;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--primary-hover);
+    padding-bottom: 5px;
+    font-size: 1.2em;
+}
+
+.result-summary {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.result-summary .final-score {
+    font-size: 3em;
+    color: var(--gold-color);
+    margin: 10px 0;
+    text-shadow: 0 0 10px var(--gold-hover);
+}
+
+.popup-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.popup-actions button {
+    flex: 1;
+}
+
+/* --- Tampilan Game Aktif --- */
+body.game-active #user-info {
+    display: none;
+}
+
+body.game-active #game-layout {
+    display: flex;
+    max-width: 95%;
+    width: 95%;
+    height: 95vh;
+    margin: auto;
+    gap: 2vw;
+}
+
+body.game-active #game-container {
+    flex: 3; /* 60% */
+    max-width: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body.game-active #game-board {
+    flex-grow: 1; /* Papan permainan mengisi ruang yang tersisa */
+}
+
+body.game-active #in-game-leaderboard {
+    flex: 2; /* 40% */
+    max-width: none;
+    height: 100%;
+}
+
+body.game-active .card {
+    width: 100px; /* Perbesar kartu saat dalam game */
+    height: 100px;
+}
+
+
+
+
+/* --- Kelas Utilitas --- */
+.hidden {
+    display: none !important; /* Gunakan !important untuk memastikan override */
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    #game-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    #in-game-leaderboard {
+        width: 90%;
+        max-width: 500px;
+    }
+    #game-container {
+        max-width: 500px;
+    }
+    .card {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    #login-container, #main-menu, #leaderboard-container {
+        padding: 30px;
+    }
+    #user-info {
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    .level-selection .levels {
+        grid-template-columns: 1fr; /* Level stacked */
+        gap: 10px;
+    }
+    .level-selection label {
+        height: auto;
+        padding: 15px;
+    }
+    .card {
+        width: 70px;
+        height: 70px;
+    }
+    .stats {
+        padding: 10px;
+    }
+}

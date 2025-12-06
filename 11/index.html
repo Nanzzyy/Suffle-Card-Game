@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shuffle Card - Memory Game</title>
+    <!-- Load Orbitron font without using @import (reduces render-blocking) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="popup-root"></div>
+
+    <div id="user-info" class="hidden">
+        <span id="welcome-message"></span>
+        <button id="logoutBtn" class="icon-button" title="Logout"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+
+    <div id="main-menu" class="hidden">
+        <h1>
+            <img src="img/logo.png" id="game-logo" alt="Game-logo">
+            Shuffle Card Game
+        </h1>
+        <div class="menu-buttons">
+            <button id="playBtn" class="large-button"><i class="fas fa-play"></i> Play Game</button>
+            <div class="sub-buttons">
+                <button id="howToPlayBtn"><i class="fas fa-question-circle"></i> How to Play</button>
+                <button id="leaderboardBtn"><i class="fas fa-trophy"></i> Leaderboard</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-layout" class="hidden">
+        <div id="game-container">
+            <h1><img src="img/logo.png" id="game-logo" alt="Game-logo"> Shuffle Card Game</h1>
+
+            <div class="stats">
+                <div><i class="fas fa-walking"></i> Moves: <span id="moves">0</span></div>
+                <div><i class="fas fa-clock"></i> Time: <span id="timer">0</span>s</div>
+                <div><i class="fas fa-handshake"></i> Matches: <span id="matches">0</span></div>
+                <div><i class="fas fa-heart"></i> Lives: <span id="lives">10</span></div>
+                <div><i class="fas fa-star"></i> Wins: <span id="wins">0</span></div>
+            </div>
+
+            <div id="game-board" class="board"></div>
+
+            <div class="buttons">
+                <button id="resetBtn"><i class="fas fa-redo"></i> Reset</button>
+                <button id="backToMenuBtn"><i class="fas fa-home"></i> Menu</button>
+            </div>
+        </div>
+        
+        <div id="in-game-leaderboard">
+            <h2><i class="fas fa-medal"></i> Top Players</h2>
+            <ol id="in-game-list">
+                </ol>
+        </div>
+    </div>
+
+    <script src="leaderboard.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
