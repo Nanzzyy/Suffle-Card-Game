@@ -53,26 +53,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Konfigurasi Game ---
     const imagePairs = {
         easy: [
-            'img/1.svg', 'img/1.svg', 'img/2.svg', 'img/2.svg', 
-            'img/3.svg', 'img/3.svg', 'img/4.svg', 'img/4.svg'
+            'img/img1.jpg', 'img/img1.jpg', 'img/img2.jpg', 'img/img2.jpg', 
+            'img/img3.jpg', 'img/img3.jpg', 'img/img4.jpg', 'img/img4.jpg'
         ],
         medium: [
-            'img/1.svg', 'img/1.svg', 'img/2.svg', 'img/2.svg', 
-            'img/3.svg', 'img/3.svg', 'img/4.svg', 'img/4.svg',
-            'img/5.svg', 'img/5.svg', 'img/6.svg', 'img/6.svg'
+            'img/img1.jpg', 'img/img1.jpg', 'img/img2.jpg', 'img/img2.jpg', 
+            'img/img3.jpg', 'img/img3.jpg', 'img/img4.jpg', 'img/img4.jpg',
+            'img/img5.jpg', 'img/img5.jpg', 'img/img6.jpg', 'img/img6.jpg'
         ],
         hard: [
-            'img/1.svg', 'img/1.svg', 'img/2.svg', 'img/2.svg', 
-            'img/3.svg', 'img/3.svg', 'img/4.svg', 'img/4.svg',
-            'img/5.svg', 'img/5.svg', 'img/6.svg', 'img/6.svg',
-            'img/7.svg', 'img/7.svg', 'img/8.svg', 'img/8.svg'
+            'img/img1.jpg', 'img/img1.jpg', 'img/img2.jpg', 'img/img2.jpg', 
+            'img/img3.jpg', 'img/img3.jpg', 'img/img4.jpg', 'img/img4.jpg',
+            'img/img5.jpg', 'img/img5.jpg', 'img/img6.jpg', 'img/img6.jpg',
+            'img/img7.jpg', 'img/img7.jpg', 'img/img8.jpg', 'img/img8.jpg'
         ]
     };
 
     const levelConfig = {
-        easy: { pairs: 4, lives: 15, timeMultiplier: 1.5 },
+        easy: { pairs: 4, lives: 8, timeMultiplier: 1.5 },
         medium: { pairs: 6, lives: 12, timeMultiplier: 1.2 },
-        hard: { pairs: 8, lives: 10, timeMultiplier: 1.0 }
+        hard: { pairs: 8, lives: 15, timeMultiplier: 1.0 }
     };
 
     // --- State Game ---
