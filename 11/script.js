@@ -50,6 +50,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const gameWinSound = createLazyAudio('../sfx/gameWinSound.mp3');
     const gameOverSound = createLazyAudio('../sfx/gameOverSound.mp3');
 
+    // --- Background Music ---
+    const backgroundMusic = (() => {
+        let audio = null;
+        return {
+            play() {
+                if (!audio) {
+                    audio = new Audio();
+                    audio.src = '../sfx/background-music.mp3';
+                    audio.loop = true;
+                    audio.volume = 0.3; // Default volume 30%
+                    audio.preload = 'none';
+                }
+                try { audio.play(); } catch (e) { console.log('Cannot play background music:', e); }
+            },
+            pause() { if (audio) audio.pause(); },
+            setVolume(vol) { if (audio) audio.volume = Math.max(0, Math.min(1, vol)); },
+            getVolume() { return audio ? audio.volume : 0.3; },
+            isPlaying() { return audio && !audio.paused; }
+        };
+    })();
+
+    let isMusicMuted = false;
+
     // --- Konfigurasi Game ---
     const imagePairs = {
         easy: [
@@ -99,6 +122,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         showScreen("menu");
+        
+        // Mulai putar background music di menu jika belum dimute
+        if (!isMusicMuted) {
+            backgroundMusic.play();
+        }
     }
 
     // --- Latar Belakang Emoji Doodle ---
@@ -135,6 +163,10 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.classList.remove('game-active');
             userInfo.classList.remove("hidden");
             mainMenu.classList.remove("hidden");
+            // Resume background music saat kembali ke menu jika tidak dimute
+            if (!isMusicMuted && !backgroundMusic.isPlaying()) {
+                backgroundMusic.play();
+            }
         } else if (screen === "game") {
             document.body.classList.add('game-active');
             userInfo.classList.add("hidden"); // Sembunyikan user info saat game berjalan
@@ -281,6 +313,11 @@ document.addEventListener("DOMContentLoaded", () => {
         boardElement.style.gridTemplateColumns = `repeat(${currentLevel === 'easy' ? 4 : 4}, 1fr)`;
 
         startTimer();
+        
+        // Mulai putar background music jika belum dimute
+        if (!isMusicMuted) {
+            backgroundMusic.play();
+        }
     }
 
     function createDeck(level) {
@@ -500,6 +537,25 @@ document.addEventListener("DOMContentLoaded", () => {
         sessionStorage.removeItem("username");
         window.location.href = "login.html";
     });
+
+    // --- Volume Control ---
+    const volumeBtn = document.getElementById("volumeBtn");
+    if (volumeBtn) {
+        volumeBtn.addEventListener("click", () => {
+            buttonClickSound.play();
+            isMusicMuted = !isMusicMuted;
+            
+            if (isMusicMuted) {
+                backgroundMusic.pause();
+                volumeBtn.classList.add("muted");
+                volumeBtn.title = "Unmute Music";
+            } else {
+                backgroundMusic.play();
+                volumeBtn.classList.remove("muted");
+                volumeBtn.title = "Mute Music";
+            }
+        });
+    }
 
     // --- Mulai Aplikasi ---
     init();

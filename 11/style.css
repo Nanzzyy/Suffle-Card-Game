@@ -147,6 +147,11 @@ h1 {
     transform: none; /* Hilangkan transform bawaan button:hover */
 }
 
+/* Volume control button muted state */
+#volumeBtn.muted {
+    color: #ff6b6b;
+}
+
 /* --- Level Selection --- */
 .level-selection h2 {
     margin-bottom: 25px;
